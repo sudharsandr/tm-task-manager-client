@@ -11,7 +11,7 @@
 <body>
 
 <div class="container">
-  <h2>All Available Tasks</h2>
+  <h2>All Available Tasks <button style="float: right;" type="button" class="btn btn-warning" (click) = "NavigateAdd()" >Add Task</button></h2>
   
   <table class="table">
     <thead>
@@ -21,16 +21,22 @@
         <th>Status</th>
         <th>Task Type</th>
         <th>Assigned to</th>
-        <th>Remove</th>
+        <th>Created date</th>
+        <th>Submission Date</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let task of AllTask;">
-        <td>{{task.id}}</td>
+        <td>TM{{task.id}}</td>
         <td>{{task.title}}</td>
-        <td>{{task.status_id}}</td>
-        <td>{{task.task_type}}</td>
-        <td>{{task.assigned_to}}</td>
+        <td>{{SendStatusForStatusId(task.status_id)}}</td>
+        <td>{{SendTaskForTaskId(task.task_type)}}</td>
+        <td>{{SendUserForUserId(task.assigned_to)}}</td>
+        <td>{{task.created_on}}</td>
+        <td>{{task.required_date}}</td>
+        <td><button type="button" class="btn btn-success" (click)="NavigateUpdate(task.id)">Update</button>
         <td><button type="button" class="btn btn-danger" (click)="RemoveTask(task.id)">Remove</button>
         </td>      
     </tr>
